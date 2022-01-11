@@ -1,6 +1,6 @@
 package com.example.inheritancevscomposition.entities;
 
-import com.example.inheritancevscomposition.mappedsupperclasses.BaseEntityAuditAddress;
+import com.example.inheritancevscomposition.mappedsupperclasses.BaseEntityAddress;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "spectator")
-public class Spectator extends BaseEntityAuditAddress {
+public class Spectator extends BaseEntityAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
