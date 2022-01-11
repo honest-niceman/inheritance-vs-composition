@@ -1,12 +1,15 @@
 package com.example.inheritancevscomposition.entities;
 
+import com.example.inheritancevscomposition.embeddables.BaseEntityAddress;
+import com.example.inheritancevscomposition.interfaces.EntityWithAddressFields;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "spectator")
-public class Spectator {
+public class Spectator implements EntityWithAddressFields {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -21,17 +24,16 @@ public class Spectator {
             inverseJoinColumns = @JoinColumn(name = "articles_id"))
     private List<Article> likedArticles = new ArrayList<>();
 
-    @Column(name = "country")
-    private String country;
+    @Embedded
+    private BaseEntityAddress baseEntityAddress;
 
-    @Column(name = "city")
-    private String city;
+    public BaseEntityAddress getBaseEntityAddress() {
+        return baseEntityAddress;
+    }
 
-    @Column(name = "street")
-    private String street;
-
-    @Column(name = "building")
-    private String building;
+    public void setBaseEntityAddress(BaseEntityAddress baseEntityAddress) {
+        this.baseEntityAddress = baseEntityAddress;
+    }
 
     public List<Article> getLikedArticles() {
         return likedArticles;
@@ -39,38 +41,6 @@ public class Spectator {
 
     public void setLikedArticles(List<Article> likedArticles) {
         this.likedArticles = likedArticles;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getBuilding() {
-        return building;
-    }
-
-    public void setBuilding(String building) {
-        this.building = building;
     }
 
     public String getUsername() {
